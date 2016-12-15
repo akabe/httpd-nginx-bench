@@ -1,0 +1,21 @@
+apache:
+  image: httpd:2.2.31-alpine
+  ports:
+    - 8081:80
+  volumes:
+    - $PWD/html:/usr/local/apache2/htdocs:ro
+    - $PWD/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
+  cpu_shares: 100
+  mem_limit: 134217728 # 128MiB
+  memswap_limit: 134217728 # 128MiB
+
+nginx:
+  image: nginx:1.11-alpine
+  ports:
+    - 8080:80
+  volumes:
+    - $PWD/html:/usr/share/nginx/html:ro
+    - $PWD/nginx.conf:/etc/nginx/nginx.conf:ro
+  cpu_shares: 100
+  mem_limit: 134217728 # 128MiB
+  memswap_limit: 134217728 # 128MiB
